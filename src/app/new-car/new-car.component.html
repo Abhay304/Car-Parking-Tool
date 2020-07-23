@@ -1,0 +1,33 @@
+<!-- Template Driven Approach -->
+<form #newCar="ngForm" (ngSubmit)="park(newCar)">
+  <div class="form-modal" [ngClass]="{'park': displayCar}">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Car No</th>
+              <th scope="col">Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-group ml-2">
+                  <input type="text" class="form-control" placeholder="Type Reg No." name="carNo" #carNo="ngModel" ngModel>
+                </div>
+              </td>
+              <td>
+                <div class="form-group ml-2">
+                  <input type="text" class="form-control" placeholder="Color" name ="color" #color="ngModel" ngModel>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-success">Park</button>
+      </div>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,67 @@
+    <div class="wrapper">
+      <!-- <button class="btn btn-primary" (click)="availableCar()">testing</button> -->
+
+      <div class="container-fluid">
+        <div>
+          <p>Total Parking Slots - {{ totalParkingSlots }}</p>
+          <p>Available Parking Slots - {{ availableSlots }}</p>
+        </div>
+        <div class="alert alert-success" [ngClass]="{'amount-alert': displayAmountAlert}">
+          Total Money Collected is {{ moneyCollected }}
+        </div>
+        <div class="float-right mb-4">
+          <button class="btn btn-success ml-2" (click)="getQueryData()">Query Data</button>
+          <button class="btn btn-danger ml-2" (click)="addMyCar()">Park a Car</button>
+        </div>
+        <div class="form-inline float-right mb-4 offset-6">
+          <div class="form-group ml-2">
+            <input type="text" class="form-control"  placeholder="Type Reg No." [(ngModel)]="myCarNo">
+          </div>
+          <div class="form-group ml-2">
+            <input type="text" class="form-control"   placeholder="Color" [(ngModel)]="myColor">
+          </div>
+          <button class="btn btn-primary ml-2" id="search" (click)="searchOrReset($event)">Search</button>
+          <button class="btn btn-secondary ml-2" id="reset" (click)="searchOrReset($event)">Reset</button>
+        </div>
+
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Car No</th>
+              <th scope="col">Color</th>
+              <th scope="col">Slot No.</th>
+              <th scope="col">Date Time</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <ng-container *ngFor="let carDetail of carDetails;let i =index">
+            <ng-container *ngIf="(carDetail.Color === myColor || carDetail.CarNo == myCarNo) && filterContent">
+              <tr>
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{carDetail.CarNo}}</td>
+                <td>{{carDetail.Color}}</td>
+                <td>{{ i+1 }}</td>
+                <td>{{ carDetail.Date | date :'medium'  }}</td>
+                <td><button class="btn btn-warning ml-2" (click)="removeCar(carDetail.CarNo)">Remove</button></td>
+              </tr>
+              </ng-container>
+              <ng-container *ngIf="!filterContent">
+                <tr>
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{carDetail.CarNo}}</td>
+                  <td>{{carDetail.Color}}</td>
+                  <td>{{ i+1 }}</td>
+                  <td>{{ carDetail.Date | date :'medium'  }}</td>
+                  <td><button class="btn btn-warning ml-2" (click)="removeCar(carDetail.CarNo)">Remove</button></td>
+                </tr>
+                </ng-container>
+            </ng-container>
+
+          </tbody>
+        </table>
+      </div>
+      <app-new-car [ngClass]="{'park': displayCar}"></app-new-car>
+    </div>

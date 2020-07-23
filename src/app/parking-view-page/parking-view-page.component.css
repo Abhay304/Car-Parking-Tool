@@ -1,0 +1,38 @@
+.wrapper{
+    position: relative;max-width: 1400px;margin: 0 auto;
+}
+
+.heading h2{
+    text-align: center;
+    color: white;
+    background-color: #2a8b8b;
+    padding: 15px;
+}
+
+.heading{
+    margin-bottom: 60px;
+}
+
+p{
+    font-weight: bold;
+}
+
+table{
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.park{
+    display: none;
+}
+
+.amount-alert{
+    display: none;
+    
+}
+
+.alert{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}

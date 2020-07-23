@@ -1,0 +1,10 @@
+.heading h2{
+    text-align: center;
+    color: white;
+    background-color: #2a8b8b;
+    padding: 15px;
+}
+
+.heading{
+    margin-bottom: 60px;
+}
