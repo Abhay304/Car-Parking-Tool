@@ -43,8 +43,7 @@
     <tbody>
       <ng-container *ngFor="let carDetail of carDetails;let i =index">
         <ng-container 
-        *ngIf="(carDetail.Color == myColor || carDetail.CarNo == myCarNo) && filterTableContent;
-        else elseBlock">
+        *ngIf="(carDetail.Color == myColor || carDetail.CarNo == myCarNo) && filterTableContent;">
           <tr>
             <th>{{ i+1 }}</th>
             <td>{{carDetail.CarNo}}</td>
