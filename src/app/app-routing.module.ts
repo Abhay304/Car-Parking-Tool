@@ -7,7 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path:'',redirectTo:'/parking-home', pathMatch:'full'},
   {path:'parking-home' , component : ParkingHomeComponent},
-  {path:'parking-View' , component: ParkingViewPageComponent}
+  {path:'parking-View' , component: ParkingViewPageComponent},
+  {path:'*' , component: ParkingHomeComponent}
 ];
 
 @NgModule({

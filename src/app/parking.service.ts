@@ -9,79 +9,68 @@ export class parkingService {
   constructor() { }
   
   parkNewCarModal = new Subject<boolean>();
-  private messageSource = new BehaviorSubject(0);
-  currentMessage = this.messageSource.asObservable();
 
-  private alreadyParkedCar = new BehaviorSubject(0);
-  updatedMessage = this.alreadyParkedCar.asObservable();
+  private totalSlots = new BehaviorSubject(0);
+  totalSlotsMessage = this.totalSlots.asObservable();
 
-  public availableSlots:number;
-  public totalSlots:number;
+  private availableSlots = new BehaviorSubject(0);
+  availableSlotsMessage = this.availableSlots.asObservable();
 
-  changeMessage(slots: number) {
-    this.messageSource.next(slots);
-    
+  totalSlotsfn(slots: number) {
+    this.totalSlots.next(slots);
   }
 
-  parkedslots(slots: number) {
-    this.alreadyParkedCar.next(slots);
+  availableSlotsfn(slots: number) {
+    this.availableSlots.next(slots);
   }
 
-  public parkedCarDetails =[
-    {'Slno':1,'CarNo' :'KA-GH-7789' ,'Color' :'red','Date': Date.now()},
-    {'Slno':2,'CarNo' :'KA-90-HJHD' ,'Color' :'blue','Date': Date.now()},
-    {'Slno':3,'CarNo' :'KA-8HD-HJJ' ,'Color' :'black','Date': Date.now()},
-    {'Slno':4,'CarNo' :'KA-HJJH-88' ,'Color' :'white' ,'Date' : Date.now()}
+  public parkedCarDetails  =[
+    {'Slno':1,'CarNo' :'KA-GH-7789' ,'Color' :'RED','Slot':3,'Date': Date.now()},
+    {'Slno':2,'CarNo' :'KA-90-HJHD' ,'Color' :'BLUE','Slot':4,'Date': Date.now()},
+    {'Slno':3,'CarNo' :'KA-8HD-HJJ' ,'Color' :'BLACK','Slot':1,'Date': Date.now()},
+    {'Slno':4,'CarNo' :'KA-HJJH-88' ,'Color' :'WHITE','Slot':2 ,'Date' : Date.now()},
+    {'Slno':5,'CarNo' :'KA-K66G-88' ,'Color' :'RED','Slot':5 ,'Date' : Date.now()}
   ]
 
   getCarDetails(){
-    
     return this.parkedCarDetails;
   }
 
-  parkNewCar(carNo :string , color:string){
-
-    this.updatedMessage.subscribe(value =>{
-      this.availableSlots = value;
+  parkNewCar(carNo :string , color:string, slot:number){
+    let availableSlots;
+    this.availableSlotsMessage.subscribe(value =>{
+      availableSlots = value;
     });
 
-    this.currentMessage.subscribe(value =>{
-      this.totalSlots = value;
-    });
-
-    if(this.availableSlots >= this.totalSlots){
-      alert('Slots are full');
+    if(availableSlots == 0){
+      alert('Sorry! All Slots are full');
       return null;
     }
 
     var dataFeed ={
       "Slno": this.parkedCarDetails.length+1,
-      "CarNo":carNo.toLowerCase(),
-      "Color" :color.toLowerCase(),
+      "CarNo":carNo.toUpperCase(),
+      "Color" :color.toUpperCase(),
+      "Slot" :slot,
       "Date" :Date.now()
     }
-    let UpdatedSlot = this.availableSlots+1;
-    this.parkedslots(UpdatedSlot);
+    let UpdatedAvailableSlots = availableSlots-1;
+    this.availableSlotsfn(UpdatedAvailableSlots);
     this.parkedCarDetails.push(dataFeed);
   } 
 
   removeCar(CarNo){
-    this.updatedMessage.subscribe(value =>{
-      this.availableSlots = value;
+    let availableSlots;
+    this.availableSlotsMessage.subscribe(value =>{
+      availableSlots = value;
     });
 
-    let UpdatedSlot = this.availableSlots-1;
-    this.parkedslots(UpdatedSlot);
+    let UpdatedAvailableSlots = availableSlots+1;
+    this.availableSlotsfn(UpdatedAvailableSlots);
     let index = this.parkedCarDetails.findIndex(e => e.CarNo == CarNo);
     if(index !== -1){
       this.parkedCarDetails.splice(index,1);
     }
-  }
-
-  availableCars(){
-    this.updatedMessage.subscribe(value =>{
-      this.availableSlots = value;
-    });
   }
   
 }

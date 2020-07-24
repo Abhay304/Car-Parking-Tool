@@ -9,24 +9,25 @@ import { Component, OnInit } from '@angular/core';
 export class ParkingViewPageComponent implements OnInit {
 
   public carDetails =[];
-  public displayCar:boolean= true;
-  public moneyCollected : number=0;
-  public displayAmountAlert :boolean= true;
-  public filterContent : boolean =false;
+  
   public myColor :string;
+  public myCarNo : string;
+
   public totalParkingSlots :number;
   public availableSlots :number;
+  public moneyCollected : number=0;
 
-  public dateTime ;
+  public displayCar:boolean= true;
+  public displayAmountAlert :boolean= true;
+  public filterTableContent : boolean =false;
 
   constructor(private parkService : parkingService) {
-    this.parkService.currentMessage.subscribe(slots => this.totalParkingSlots = slots);
-    this.parkService.updatedMessage.subscribe(parkedCars => this.availableSlots = parkedCars);
+    this.parkService.totalSlotsMessage.subscribe(slots => this.totalParkingSlots = slots);
+    this.parkService.availableSlotsMessage.subscribe(slots => this.availableSlots = slots);
    }
 
   ngOnInit() {
     this.carDetails = this.parkService.getCarDetails();
-    this.dateTime = Date.now();
   }
 
   addMyCar(){
@@ -34,9 +35,9 @@ export class ParkingViewPageComponent implements OnInit {
     this.parkService.parkNewCarModal.next(false);
   }
 
-  removeCar(CarNo){
-    this.moneyCollected = this.moneyCollected+ 20; 
-    this.parkService.removeCar(CarNo);
+  removeCar(carNo:number){
+    this.moneyCollected = this.moneyCollected + 20; 
+    this.parkService.removeCar(carNo);
   }
 
   getQueryData(){
@@ -48,15 +49,16 @@ export class ParkingViewPageComponent implements OnInit {
 
   searchOrReset(e){
     if(e.target.id == "search"){
-        this.filterContent = true;
+        this.filterTableContent = true;
+    }
+    else if(e.target.id == "reset"){
+      this.filterTableContent = false;
+      this.myCarNo ="";
+      this.myColor="";
     }
     else{
-      this.filterContent = false;
+      this.filterTableContent = false;
     }
-  }
-
-  availableCar(){
-    this.parkService.availableCars();
   }
 
 }

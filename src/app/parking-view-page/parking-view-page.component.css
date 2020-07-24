@@ -1,5 +1,7 @@
-.wrapper{
-    position: relative;max-width: 1400px;margin: 0 auto;
+.container-fluid{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .heading h2{
@@ -22,14 +24,10 @@ table{
     margin-bottom: 5rem;
 }
 
-.park{
+.park,.amount-alert{
     display: none;
 }
 
-.amount-alert{
-    display: none;
-    
-}
 
 .alert{
     text-align: center;

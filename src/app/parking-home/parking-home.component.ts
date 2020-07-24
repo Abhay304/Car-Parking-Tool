@@ -17,20 +17,20 @@ export class ParkingHomeComponent implements OnInit {
 
   onSubmit(formValue:NgForm){
     
-    let carsparked = parseInt(formValue.value.parkedCars);
-    let parkingPlaces = parseInt(formValue.value.parkingPlace);
-
+    let totalParkingPlace = parseInt(formValue.value.parkingPlace);
+    let parkedCars = parseInt(formValue.value.parkedCars);
+    
     if(formValue.value.parkingPlace =="" || formValue.value.parkedCars == ""){
       alert('Fill all required Details to submit');
       return null;
-    }else if (carsparked > parkingPlaces){
+    }else if (parkedCars > totalParkingPlace){
       alert('Number of Car Parked cannot be greater than Number of Pakring Place');
       formValue.reset();
       return null;
     }
     else{
-      this.parkSerice.changeMessage(parkingPlaces);
-      this.parkSerice.parkedslots(carsparked);
+      this.parkSerice.totalSlotsfn(totalParkingPlace);
+      this.parkSerice.availableSlotsfn(totalParkingPlace-parkedCars);
       this.router.navigate(["/parking-View"]);
     }
 

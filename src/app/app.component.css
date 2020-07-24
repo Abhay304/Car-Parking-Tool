@@ -7,4 +7,12 @@
 
 .heading{
     margin-bottom: 60px;
+    width: 100%;
+
+}
+
+@media only screen and (max-width: 470px) {
+.heading{
+    width: 110%;
+}
 }

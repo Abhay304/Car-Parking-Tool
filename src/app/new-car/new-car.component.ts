@@ -1,4 +1,4 @@
-import { parkingService } from './../parking.service';
+import { parkingService } from '../parking.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -20,14 +20,15 @@ export class NewCarComponent implements OnInit {
   ngOnInit() {}
 
   park(newCar:NgForm){
-    if(newCar.value.carNo =="" || newCar.value.color == "" ){ 
-      alert('Fill Your Details To Park Your Car');
+    if(newCar.value.carNo =="" || newCar.value.color == "" || newCar.value.slot == ""){ 
+      alert('Fill Car Details To Park Car');
       this.displayCar = true;
       return null;
     }
     let CarNo = newCar.value.carNo;
     let Color = newCar.value.color;
-    this.parkService.parkNewCar(CarNo,Color);
+    let Slot = newCar.value.slot;
+    this.parkService.parkNewCar(CarNo,Color,Slot);
     newCar.reset();
     this.displayCar = true;
   }
