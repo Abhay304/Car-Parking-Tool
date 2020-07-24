@@ -8,8 +8,10 @@ export class parkingService {
 
   constructor() { }
   
+  // Subject used to communication
   parkNewCarModal = new Subject<boolean>();
 
+  //behavioural subject for communication between non relationship components
   private totalSlots = new BehaviorSubject(0);
   totalSlotsMessage = this.totalSlots.asObservable();
 
@@ -24,6 +26,7 @@ export class parkingService {
     this.availableSlots.next(slots);
   }
 
+  // Five HardCore JSON DATA
   public parkedCarDetails  =[
     {'Slno':1,'CarNo' :'KA-GH-7789' ,'Color' :'RED','Slot':3,'Date': Date.now()},
     {'Slno':2,'CarNo' :'KA-90-HJHD' ,'Color' :'BLUE','Slot':4,'Date': Date.now()},
@@ -36,6 +39,7 @@ export class parkingService {
     return this.parkedCarDetails;
   }
 
+  // Add a New Car Logic
   parkNewCar(carNo :string , color:string, slot:number){
     let availableSlots;
     this.availableSlotsMessage.subscribe(value =>{
@@ -59,6 +63,7 @@ export class parkingService {
     this.parkedCarDetails.push(dataFeed);
   } 
 
+    // Remove a Car logic
   removeCar(CarNo){
     let availableSlots;
     this.availableSlotsMessage.subscribe(value =>{

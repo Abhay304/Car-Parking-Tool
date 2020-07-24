@@ -3,12 +3,14 @@ import { ParkingHomeComponent } from './parking-home/parking-home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+ // ** is wild Card Route
 
 const routes: Routes = [
   {path:'',redirectTo:'/parking-home', pathMatch:'full'},
   {path:'parking-home' , component : ParkingHomeComponent},
   {path:'parking-View' , component: ParkingViewPageComponent},
   {path:'**' , component: ParkingHomeComponent}
+  
 ];
 
 @NgModule({

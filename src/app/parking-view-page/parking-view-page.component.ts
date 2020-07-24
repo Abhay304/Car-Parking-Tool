@@ -30,16 +30,20 @@ export class ParkingViewPageComponent implements OnInit {
     this.carDetails = this.parkService.getCarDetails();
   }
 
+  // Add New car in the parking lot
   addMyCar(){
     this.displayCar = false;
     this.parkService.parkNewCarModal.next(false);
   }
 
+  // Remove Car and Collect Money
   removeCar(carNo:number){
     this.moneyCollected = this.moneyCollected + 20; 
     this.parkService.removeCar(carNo);
   }
 
+  // Alert mesasage for displaying money collected
+  // Auto hide using setTimeout
   getQueryData(){
     this.displayAmountAlert = false;
     setTimeout( () =>{
@@ -47,6 +51,8 @@ export class ParkingViewPageComponent implements OnInit {
     },3000);
   }
 
+  // Search OR Reset function
+  //Click reset to Reset the Search
   searchOrReset(e){
     if(e.target.id == "search"){
         this.filterTableContent = true;

@@ -1,25 +1,26 @@
-    <div class="container">
-      <form #userform="ngForm" (ngSubmit)="onSubmit(userform)">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 offset-md-3 offset-lg-3">
-            <div class="form-group">
-              <label>Number of parking places</label>
-              <input class="form-control" type="number" #parkingPlace="ngModel" placeholder="Parking places"
-                name="parkingPlace" ngModel>
-            </div>
-          </div>
+<!--Angular Template driven approach -->
+<div class="container">
+  <form #userform="ngForm" (ngSubmit)="onSubmit(userform)">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 offset-md-3 offset-lg-3">
+        <div class="form-group">
+          <label>Number of parking places</label>
+          <input class="form-control" type="number" #parkingPlace="ngModel" placeholder="Parking places"
+            name="parkingPlace" ngModel>
+        </div>
+      </div>
 
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <div class="form-group">
-              <label>Number of cars parked</label>
-              <input class="form-control" type="number" placeholder="Cars Parked" #parkedCars="ngModel"
-                name="parkedCars" ngModel>
-            </div>
-          </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+        <div class="form-group">
+          <label>Number of cars parked</label>
+          <input class="form-control" type="number" placeholder="Cars Parked" #parkedCars="ngModel" name="parkedCars"
+            ngModel>
         </div>
-        <div class="align-button">
-          <button class="btn btn-primary">Submit</button>
-        </div>
-        <router-outlet></router-outlet>
-      </form>
+      </div>
     </div>
+    <div class="align-button">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+    <router-outlet></router-outlet>
+  </form>
+</div>
