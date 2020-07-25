@@ -67,4 +67,8 @@ export class ParkingViewPageComponent implements OnInit {
     }
   }
 
+  setTodefault(){
+    // console.log(this.filterTableContent);
+    this.filterTableContent = false;
+  }
 }

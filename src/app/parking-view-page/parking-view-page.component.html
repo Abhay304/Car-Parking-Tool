@@ -16,16 +16,16 @@
   <div class="form-inline float-right mb-4 offset-6">
     
     <div class="form-group ml-2">
-      <input type="text" [(ngModel)]="myCarNo" (ngModelChange)="myCarNo=$event.toUpperCase()"
+      <input type="text" [(ngModel)]="myCarNo" (keypress)="setTodefault()" (ngModelChange)="myCarNo=$event.toUpperCase()"
        class="form-control" placeholder="Type Reg No.">
     </div>
     <h4> OR </h4>
     <div class="form-group ml-2">
-      <input type="text" [(ngModel)]="myColor" (ngModelChange)="myColor=$event.toUpperCase()" 
+      <input type="text" [(ngModel)]="myColor" (keypress)="setTodefault()" (ngModelChange)="myColor=$event.toUpperCase()" 
       class="form-control" placeholder="Type Color">
     </div>
-    <button class="btn btn-primary ml-2" id="search" (click)="searchOrReset($event)">Search</button>
-    <button class="btn btn-secondary ml-2" id="reset" (click)="searchOrReset($event)">Reset</button>
+    <button class="btn btn-primary ml-2" id="search"  (click)="searchOrReset($event)">Search</button>
+    <button class="btn btn-secondary ml-2" id="reset"  (click)="searchOrReset($event)">Reset</button>
   </div>
 
   <table class="table table-bordered">
