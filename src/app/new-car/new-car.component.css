@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    
+
 }
 
 .park{
@@ -13,4 +13,10 @@
 
 .card{
     background-color: #2a8b8b;
+}
+
+@media only screen and (max-width: 1000px) {
+    .form-modal{
+        width: 90%;
+    }
 }
